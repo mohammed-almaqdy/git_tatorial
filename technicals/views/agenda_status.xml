@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="agenda_status_view_calendar" model="ir.ui.view">
+        <field name="name">agenda_status.view.calendar</field>
+        <field name="model">agenda.status</field>
+        <field name="arch" type="xml">
+            <calendar date_start="start_time" date_stop="end_time" string="Tickets" mode="month" color="partner_name" event_open_popup="1" form_view_id="%(agenda_status_form_view)d" quick_add="0">
+                <field name="partner_name" filters="1"/>
+                <field name="name"/>
+                <field name="age"/>
+				<field name="country_id"/>
+				<field name="state_id"/>
+				
+				<field name="status" filters="1"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="agenda_status_tree_view" model="ir.ui.view">
+        <field name="name">agenda.status.tree.view</field>
+        <field name="model">agenda.status</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Status">
+                <field name="name"/>
+                <field name="color"/>
+                <field name="age"/>
+                <field name="status"/>
+                <field name="partner_name"/>
+            </tree>
+        </field>
+    </record>
+    <!-- model.name kanban view -->
+    <record id="agenda_status_kanban" model="ir.ui.view">
+       <field name="name">agenda.status.kanban.view</field>  
+        <field name="model">agenda.status</field>  
+        <field name="arch" type="xml">
+            <kanban default_group_by="status" group_create="false" sample="1" >
+
+                <field name="name"/>
+                <field name="age"/>
+                <field name="status"/>
+                <field name="color"/>
+                <field name="partner_name"/>
+                <progressbar field="status" colors='{"new": "(record.color.raw_value)", "approved": "(record.color.raw_value)", "rejected": "(record.color.raw_value)"}'/>
+                    <templates> 
+                        <t t-name="kanban-box">
+                            <t t-if="record.status.raw_value == 'new'">
+                                <!-- <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''} oe_kanban_global_click" style="background-color:red; border-color:black black black black "> -->
+                                <!-- style="border-color:red green blue yellow"  -->
+                                <!-- <t-if="record.probability.raw_value == 0" ?style="background-color:#00FF00;"> -->
+                                <div style="background-color:(record.color.raw_value)">
+                                <!-- <div t-att-class="color + (record.status.raw_value == 'new' ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'"> -->
+
+                                    <div t-attf-class="oe_kanban_global_click">                    
+                                    <div class="oe_kanban_details"> 
+                                        <t class="o_kanban_record_title">                                     
+                                            <strong t-esc="record.name.value"/>
+                                        </t>                          
+                                        <div t-if="record.age.value"> 
+                                            <t t-esc="record.age.value"/> 
+                                        </div>  
+                                        <div t-if="record.partner_name.value"> 
+                                            <t t-esc="record.partner_name.value"/> 
+                                        </div>                          
+                                        <div t-if="record.status.value"> 
+                                            <t t-esc="record.status.value"/> 
+                                        </div> 
+                                    </div>
+                                    </div>
+                                </div>
+                            </t>
+                             <t t-if="record.status.raw_value == 'approved'">
+                               
+                                <div style="background-color:(record.color.raw_value)">
+                               
+                                    <div t-attf-class="oe_kanban_global_click">                    
+                                    <div class="oe_kanban_details"> 
+                                        <t class="o_kanban_record_title">                                     
+                                            <strong t-esc="record.name.value"/>
+                                        </t>                          
+                                        <div t-if="record.age.value"> 
+                                            <t t-esc="record.age.value"/> 
+                                        </div>  
+                                        <div t-if="record.partner_name.value"> 
+                                            <t t-esc="record.partner_name.value"/> 
+                                        </div>                          
+                                        <div t-if="record.status.value"> 
+                                            <t t-esc="record.status.value"/> 
+                                        </div> 
+                                    </div> 
+                                    </div>
+                                </div>
+                            </t>
+                             <t t-if="record.status.raw_value == 'rejected'">
+                                <div style="background-color:(record.color.raw_value)">
+                                    <div t-attf-class="oe_kanban_global_click">                    
+                                    <div class="oe_kanban_details"> 
+                                        <t class="o_kanban_record_title">                                     
+                                            <strong t-esc="record.name.value"/>
+                                        </t>                          
+                                        <div t-if="record.age.value"> 
+                                            <t t-esc="record.age.value"/> 
+                                        </div>  
+                                        <div t-if="record.partner_name.value"> 
+                                            <t t-esc="record.partner_name.value"/> 
+                                        </div>                          
+                                        <div t-if="record.status.value"> 
+                                            <t t-esc="record.status.value"/> 
+                                        </div> 
+                                    </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
+                    </templates>    
+            </kanban> 
+        </field>
+    </record>	
+    <!-- Create the form view -->
+    <record id="agenda_status_form_view" model="ir.ui.view">
+        <field name="name">agenda.status.form.view</field>
+        <field name="model">agenda.status</field>
+        <field name="type">form</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Status">
+                <group col="2">
+                    <field name="name"/>
+                    <!-- <field name="color"/> -->
+                    <field name="status"/>
+                    <field name="color"/>
+                    <field name="age"/>
+                    <field name="partner_name"/>
+                    <field name="country_id"/>
+                    <field name="state_id"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                     
+                </group>
+            </form>
+        </field>
+    </record>
+
+     <record model="ir.actions.act_window" id="open_view_agenda_coloring">
+        <field name="name">Agenda Statuses</field>
+        <field name="res_model">agenda.status</field>
+        <field name='view_mode'>tree,kanban,calendar,form</field>
+        <field name='view_id' ref='agenda_status_tree_view'/>
+    </record>
+
+     <menuitem id="menu_color_root"
+        name="Agenda statuses"
+        sequence="5"/>
+
+    <menuitem action="open_view_agenda_coloring"
+        id="menu_color_child"
+        name="Agenda statuses"
+        parent="menu_color_root"
+        sequence="10"/>
+
+</odoo>
+
+
