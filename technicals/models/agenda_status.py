@@ -25,7 +25,6 @@ class AgendaStatus(models.Model):
     # pri = fields.Integer(string='priyorty',default=2)
     sign = fields.Binary('signiture')
     priority = fields.Selection([('0','Low'), ('1','Normal'), ('2','High'),('3','very hight')], 'Priority',default=0)
-    # hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
     @api.onchange('status')
     def onchange_status(self):
         if  self.status == 'new':
