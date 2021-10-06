@@ -22,7 +22,9 @@ class AgendaStatus(models.Model):
     )
     start_time = fields.Datetime(string='Start Time')
     end_time = fields.Datetime(string='End Time')
-
+    # pri = fields.Integer(string='priyorty',default=2)
+    sign = fields.Binary('signiture')
+    priority = fields.Selection([('0','Low'), ('1','Normal'), ('2','High'),('3','very hight')], 'Priority',default=0)
     @api.onchange('status')
     def onchange_status(self):
         if  self.status == 'new':
