@@ -33,4 +33,26 @@ class AgendaStatus(models.Model):
             self.color =3
         elif self.status== 'rejected':
             self.color=10
-       
+        # ch = self.env['agenda.status'].browse(25)
+        # print('hhhhhhhhh',ch)
+        # if ch.exists():
+        #     print('Exist')
+        # else:
+        #     print('Not Exist')
+
+
+        # va = {
+        #     'name':'sodu',
+        #     'age':44
+
+        # }
+        # self.env['agenda.status'].create(va)
+
+
+        # vals = {'name':'record','age':332}
+        # erc_to_update = self.env['agenda.status'].search([('id','=','27')])
+        # erc_to_update.write(vals)
+
+
+        erc_to_update = self.env['agenda.status'].search([('id','=','37')])
+        erc_to_update.unlink()
