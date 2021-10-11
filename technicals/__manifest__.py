@@ -26,7 +26,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/agenda_status.xml',
-        # 'views/project_task.xml',
+        'views/proj.xml',
         # 'views/colorjs.xml',
     ],
     # only loaded in demonstration mode

@@ -18,7 +18,7 @@
             "program": "/home/mohammed/odoo/odoo-14.0/odoo-bin",
             "args": [
                 "--config=/home/mohammed/odoo/config/colorsa.conf",
-                "-u","technicals"
+                "-u","technicals",
                 
             ],
             "console": "internalConsole"

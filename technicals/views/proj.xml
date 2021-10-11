@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_taview" model="ir.ui.view">
+    <field name="name">project.proj.view</field>
+    <field name="model">proj</field>
+    <field name="arch" type="xml">
+        <form string="">
+            <sheet>
+                <group>
+                    <field name="agenda_status"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+    </record>
+           
+   <!-- model.name tree view -->
+   <record id="proj_view_tree" model="ir.ui.view">
+       <field name="name">proj.view.tree</field>
+       <field name="model">proj</field>
+       <field name="arch" type="xml">
+           <tree>
+                <field name="agenda_status"/>            
+           </tree>
+       </field>
+   </record>
+   <record model="ir.actions.act_window" id="open_view_pro">
+        <field name="name">Apro</field>
+        <field name="res_model">proj</field>
+        <field name='view_mode'>tree,form</field>
+    </record>
+
+    <!-- <menuitem id="menu_proj_root"
+        name="projects"/> -->
+
+    <menuitem action="open_view_pro"
+        id="menu_proj_child"
+        name="project list"
+        parent="menu_color_root"/>
+</odoo>

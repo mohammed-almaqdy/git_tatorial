@@ -33,6 +33,17 @@ class AgendaStatus(models.Model):
             self.color =3
         elif self.status== 'rejected':
             self.color=10
+
+        # fil = self.env['agenda.status'].search([]).filtered(lambda r:r.name=='f5')
+        # print(fil)
+        # this is trying
+        # fil = self.env['agenda.status'].search([]).sorted(key='age',reverse=True).mapped('age')
+        # print(fil)
+        # fil1 = self.env['helpdesk.ticket'].search([]).mapped('name')
+        # fil = self.env['helpdesk.ticket'].with_context(lang=)
+        # print(fil1)
+        # print(fil)
+        # ch = self.e
         # ch = self.env['agenda.status'].browse(25)
         # print('hhhhhhhhh',ch)
         # if ch.exists():
@@ -54,5 +65,14 @@ class AgendaStatus(models.Model):
         # erc_to_update.write(vals)
 
 
-        erc_to_update = self.env['agenda.status'].search([('id','=','37')])
-        erc_to_update.unlink()
+        # erc_to_update = self.env['agenda.status'].search([('id','=','37')])
+        # erc_to_update.unlink()
+   
+    def neme_get(self):
+        res = []
+        for re in self:
+
+            res.append((re.id,'%s-%s'%(re.name,re.age)))
+
+        return res
+    
