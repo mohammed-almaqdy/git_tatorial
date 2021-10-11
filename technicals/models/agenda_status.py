@@ -43,6 +43,7 @@ class AgendaStatus(models.Model):
         # fil = self.env['helpdesk.ticket'].with_context(lang=)
         # print(fil1)
         # print(fil)
+        # f
         # ch = self.e
         # ch = self.env['agenda.status'].browse(25)
         # print('hhhhhhhhh',ch)
