@@ -76,5 +76,5 @@ class AgendaStatus(models.Model):
             res.append((re.id,'%s-%s'%(re.name,re.age)))
 
         return res
-        # add
+        # add to
     
